@@ -8,8 +8,10 @@ namespace Entities.Models
 {
     public class User
     {
-        [Key]
+       
         [Column("UserId")]
+        public Guid Id { get; set; }
+
         [Required(ErrorMessage = "Debe ingresar un email")]
         [MaxLength(200, ErrorMessage = "El email no puede ser mayor a 200 caracteres.")]
         public string Email { get; set; }

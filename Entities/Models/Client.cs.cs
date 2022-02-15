@@ -7,8 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entities.Models
 {
     public class Client
-    {
-        [Key]
+    {       
         [Column("ClientId")]
         public Guid Id { get; set; }
 

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Models
 {
     public class Product
-    {
-        [Required]
+    {       
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Debe ingeresar el nombre del producto")]
@@ -29,6 +29,7 @@ namespace Entities.Models
         [MaxLength(500, ErrorMessage = "El nombre de la imagen es demasiado largo.")]
         public string ImageSource { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         [Required(ErrorMessage = "Debe ingeresar el precio del producto")]
         public decimal Price { get; set; }
     }
