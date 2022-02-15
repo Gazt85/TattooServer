@@ -12,10 +12,16 @@ namespace Entities.Models
         public Guid Id { get; set; }
 
         [ForeignKey(nameof(User))]
-        [MaxLength(200, ErrorMessage = "El email no puede ser mayor a 200 caracteres.")]
-        public string Email { get; set; }
+        public Guid UserId { get; set; }
 
-        public User User { get; set; }
+        /// <summary>
+        /// Current Status of the appointment.
+        /// Probable cases are:
+        /// 0 - Tentative - default.
+        /// 1 - Confirmed - authorized by the admin.
+        /// </summary>
+        [ForeignKey(nameof(Status))]
+        public int StatusId { get; set; }
 
         [Required(ErrorMessage = "Debe ingeresar el nombre")]
         [MaxLength(100, ErrorMessage = "El nombre no puede ser mayor a 100 caracteres.")]
@@ -49,12 +55,9 @@ namespace Entities.Models
 
         public string Photo { get; set; }
 
-        /// <summary>
-        /// Current Status of the appointment.
-        /// Probable cases are:
-        /// 0 - Tentative - default.
-        /// 1 - Confirmed - authorized by the admin.
-        /// </summary>
-        public int StatusId { get; set; }
+        public User User { get; set; }
+        public int Status { get; set; }
+
+
     }
 }
