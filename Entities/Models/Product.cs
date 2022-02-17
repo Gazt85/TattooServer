@@ -30,6 +30,7 @@ namespace Entities.Models
         [MaxLength(500, ErrorMessage = "El nombre de la imagen es demasiado largo.")]
         public string ImageSource { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         [Required(ErrorMessage = "Debe ingeresar el precio del producto")]
         public decimal Price { get; set; }
     }
