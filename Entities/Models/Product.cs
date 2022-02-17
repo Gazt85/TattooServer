@@ -7,8 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entities.Models
 {
     public class Product
-    {
-       [Key]
+    {     
        [Column("ProductId")]
         public Guid Id { get; set; }
 
@@ -32,6 +31,8 @@ namespace Entities.Models
         public string ImageSource { get; set; }
 
         [Required(ErrorMessage = "Debe ingeresar el precio del producto")]
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
     }
 }

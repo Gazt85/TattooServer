@@ -13,13 +13,13 @@ namespace Entities.Configuration
                (
                   new PreviousTattooData
                   {
-                      Id = 0,
+                      Id = 1,
                       Option = "NO"
                   },
 
                   new PreviousTattooData
                   {
-                      Id = 1,
+                      Id = 2,
                       Option = "SI"
                   }
                 );

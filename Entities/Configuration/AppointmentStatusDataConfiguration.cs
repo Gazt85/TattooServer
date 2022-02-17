@@ -13,14 +13,14 @@ namespace Entities.Configuration
                (
                  new AppointmentStatusData
                  {
-                     Id = 0,
+                     Id = 1,
                      Name = "Tentativo",
                      Color = "#ea7a57"
                  },
 
                 new AppointmentStatusData
                 {
-                    Id = 1,
+                    Id = 2,
                     Name = "Confirmado",
                     Color = "#7fa900"
                 }

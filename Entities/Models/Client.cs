@@ -7,8 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entities.Models
 {
     public class Client
-    {
-        [Key]
+    {       
         [Column("ClientId")]
         public Guid Id { get; set; }
 
@@ -26,6 +25,6 @@ namespace Entities.Models
 
         [Required(ErrorMessage = "Debe ingresar el número de télefono")]
         [MaxLength(100, ErrorMessage = "El número de telefono no puede ser mayor a 100 caracteres.")]
-        public string Phone { get; set; }
+        public string Phone { get; set; }       
     }
 }
