@@ -6,8 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Entities.Models
 {
     public class Product
-    {
-        [Required]
+    {        
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Debe ingeresar el nombre del producto")]
