@@ -28,7 +28,7 @@ namespace TattooServer.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetUsers()
-        {
+        {           
             var users = await _repository.User.GetAllUsersAsync(trackChanges: false);
 
             var usersDto = _mapper.Map<IEnumerable<UserDto>>(users);
