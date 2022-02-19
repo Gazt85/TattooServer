@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-namespace Entities.Models
+namespace Entities.DataTransferObjects
 {
-    public class AppointmentData
+    public class AppointmentDataForCreationDto
     {
-        [Column("AppointmenId")]
-        public Guid Id { get; set; }
-
-        [ForeignKey(nameof(User))]      
-        public Guid UserId { get; set; }
-
-        public User User { get; set; }
-
         [Required(ErrorMessage = "Debe ingeresar el nombre")]
         [MaxLength(100, ErrorMessage = "El nombre no puede ser mayor a 100 caracteres.")]
         public string FirstName { get; set; }
@@ -28,11 +19,14 @@ namespace Entities.Models
         [MaxLength(100, ErrorMessage = "El número de telefono no puede ser mayor a 100 caracteres.")]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "Debe ingressar una descripción")]
+        [MaxLength(200, ErrorMessage = "El email no puede ser mayor a 200 caracteres.")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar una descripción")]
         [MaxLength(500, ErrorMessage = "La descripción no puede ser mayor a 500 caracteres.")]
         public string TattooDescription { get; set; }
 
-        public bool HasPreviousTattoos { get; set; }
+        public int HasPreviousTattoos { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar el largo del tatuaje")]
 
@@ -42,9 +36,20 @@ namespace Entities.Models
         public double TattooWidth { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar la fecha del tatuaje")]
-        public DateTime StartDateTime { get; set; }
+        public DateTime? Date { get; set; }
 
-        public DateTime EndDatetime { get; set; }
+        [Required(ErrorMessage = "Debe ingresar la hora del tatuaje")]
+        public DateTime? Time { get; set; }
+
+        /// <summary>
+        /// Initial Time
+        /// </summary>
+        public DateTime StartTime { get; set; }
+
+        /// <summary>
+        /// Final Time
+        /// </summary>
+        public DateTime EndTime { get; set; }
 
         public string Photo { get; set; }
 
