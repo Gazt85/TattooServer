@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-namespace Entities.Models
+namespace Entities.DataTransferObjects
 {
-    public class User
+    public class UserForCreationDto
     {
-       
-        [Column("UserId")]
-        public Guid Id { get; set; }
-
+        [Key]
         [Required(ErrorMessage = "Debe ingresar un email")]
         [MaxLength(200, ErrorMessage = "El email no puede ser mayor a 200 caracteres.")]
         public string Email { get; set; }
@@ -21,7 +17,5 @@ namespace Entities.Models
         public string Password { get; set; }
 
         public bool IsAdmin { get; set; }
-
-        public ICollection<AppointmentData> Appointments { get; set; }
     }
 }
