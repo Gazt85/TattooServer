@@ -1,0 +1,2 @@
+2022-02-19 17:10:24.3664 INFO User with id: fb4fd82f-fbad-4b86-9492-d940e7084248 doesn't exists in the database.
+2022-02-19 17:11:59.4401 INFO User with id: fb4fd82f-fbad-4b86-9492-d940e7084248 doesn't exists in the database.

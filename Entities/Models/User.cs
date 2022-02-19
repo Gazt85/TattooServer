@@ -21,5 +21,7 @@ namespace Entities.Models
         public string Password { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public ICollection<AppointmentData> Appointments { get; set; }
     }
 }

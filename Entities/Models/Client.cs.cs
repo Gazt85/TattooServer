@@ -6,14 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Models
 {
-    public class Client
-    {       
-        [Column("ClientId")]
-        public Guid Id { get; set; }
-
-        [Required]
-        [MaxLength(200, ErrorMessage = "El email no puede ser mayor a 200 caracteres.")]
-        public string Email { get; set; }
+    public class Client : User
+    {              
 
         [Required(ErrorMessage = "Debe ingeresar el nombre")]
         [MaxLength(100, ErrorMessage = "El nombre no puede ser mayor a 100 caracteres.")]

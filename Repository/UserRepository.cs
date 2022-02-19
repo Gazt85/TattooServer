@@ -23,8 +23,8 @@ namespace Repository
         .OrderBy(c => c.Email)
         .ToListAsync();
 
-        public async Task<User> GetUserAsync(string userId, bool trackChanges) =>
-           await FindByCondition(c => c.Email.Equals(userId), trackChanges)
+        public async Task<User> GetUserAsync(Guid userId, bool trackChanges) =>
+           await FindByCondition(c => c.Id.Equals(userId), trackChanges)
            .SingleOrDefaultAsync();
 
         public void CreateUser(User user) => Create(user);
@@ -32,6 +32,6 @@ namespace Repository
         public void DeleteUser(User user)
         {
             Delete(user);
-        }
+        }      
     }
 }

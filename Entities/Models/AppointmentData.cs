@@ -11,9 +11,8 @@ namespace Entities.Models
         [Column("AppointmenId")]
         public Guid Id { get; set; }
 
-        [ForeignKey(nameof(User))]
-        [MaxLength(200, ErrorMessage = "El email no puede ser mayor a 200 caracteres.")]
-        public string Email { get; set; }
+        [ForeignKey(nameof(User))]      
+        public Guid UserId { get; set; }
 
         public User User { get; set; }
 

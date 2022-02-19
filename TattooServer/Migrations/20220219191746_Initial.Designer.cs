@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TattooServer.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20220211032323_InitialData")]
-    partial class InitialData
+    [Migration("20220219191746_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,10 +27,6 @@ namespace TattooServer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("AppointmenId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
 
                     b.Property<DateTime>("EndDatetime")
                         .HasColumnType("datetime2");
@@ -73,9 +69,12 @@ namespace TattooServer.Migrations
                     b.Property<double>("TattooWidth")
                         .HasColumnType("float");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("Email");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Appointments");
 
@@ -83,7 +82,6 @@ namespace TattooServer.Migrations
                         new
                         {
                             Id = new Guid("e22c5d2c-e98a-44b2-91e0-1a1397317901"),
-                            Email = "juan@noemail.com",
                             EndDatetime = new DateTime(2021, 12, 5, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Juan",
                             HasPreviousTattoos = false,
@@ -94,12 +92,12 @@ namespace TattooServer.Migrations
                             StatusId = 0,
                             TattooDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             TattooHeight = 10.0,
-                            TattooWidth = 15.0
+                            TattooWidth = 15.0,
+                            UserId = new Guid("1497eb69-419f-40d4-bde3-a40a0fdb99b0")
                         },
                         new
                         {
                             Id = new Guid("e66c2ad3-2be8-43bb-95f8-edce81b46f1a"),
-                            Email = "brian@noemail.com",
                             EndDatetime = new DateTime(2021, 12, 8, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Brian",
                             HasPreviousTattoos = true,
@@ -109,12 +107,12 @@ namespace TattooServer.Migrations
                             StatusId = 1,
                             TattooDescription = "Lorem ipsum it ments saab dolore ullamco laboris nisi ut",
                             TattooHeight = 30.0,
-                            TattooWidth = 20.0
+                            TattooWidth = 20.0,
+                            UserId = new Guid("befb2d78-b315-42e5-ba02-c1183fd60756")
                         },
                         new
                         {
                             Id = new Guid("3bf3b353-6c41-478f-b5e9-73ba70979942"),
-                            Email = "sofia@noemail.com",
                             EndDatetime = new DateTime(2021, 12, 17, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Sofia",
                             HasPreviousTattoos = false,
@@ -125,12 +123,12 @@ namespace TattooServer.Migrations
                             StatusId = 1,
                             TattooDescription = "Lorem ipsum it ments saab dolore ullamco laboris nisi ut",
                             TattooHeight = 10.0,
-                            TattooWidth = 15.0
+                            TattooWidth = 15.0,
+                            UserId = new Guid("a5ee6fb2-bcf0-4214-ae92-3af7e610fa03")
                         },
                         new
                         {
                             Id = new Guid("9d797c0e-3280-4434-8a55-8055221a279c"),
-                            Email = "lucas@noemail.com",
                             EndDatetime = new DateTime(2021, 12, 7, 16, 30, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Lucas",
                             HasPreviousTattoos = true,
@@ -140,12 +138,12 @@ namespace TattooServer.Migrations
                             StatusId = 0,
                             TattooDescription = "Lorem ipsum it ments saab dolore ullamco laboris nisi ut",
                             TattooHeight = 10.0,
-                            TattooWidth = 15.0
+                            TattooWidth = 15.0,
+                            UserId = new Guid("10aa1197-16f0-4bba-b5cd-637ebd6d3eff")
                         },
                         new
                         {
                             Id = new Guid("a5008a5a-1d56-4b65-80fd-d8b5da9772b5"),
-                            Email = "brian@noemail.com",
                             EndDatetime = new DateTime(2021, 12, 7, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Diego",
                             HasPreviousTattoos = false,
@@ -155,12 +153,12 @@ namespace TattooServer.Migrations
                             StatusId = 0,
                             TattooDescription = "Lorem ipsum it ments",
                             TattooHeight = 10.0,
-                            TattooWidth = 15.0
+                            TattooWidth = 15.0,
+                            UserId = new Guid("76258c5c-f7fd-42ed-b5cb-bfa8de160963")
                         },
                         new
                         {
                             Id = new Guid("c083623f-ec5b-4d28-8bcb-a4b2f1cf053b"),
-                            Email = "nati@noemail.com",
                             EndDatetime = new DateTime(2021, 12, 9, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Natalia",
                             HasPreviousTattoos = false,
@@ -170,7 +168,8 @@ namespace TattooServer.Migrations
                             StatusId = 1,
                             TattooDescription = "Lorem ipsum it ments",
                             TattooHeight = 10.0,
-                            TattooWidth = 15.0
+                            TattooWidth = 15.0,
+                            UserId = new Guid("22e1eaa2-bf97-4c83-8af6-84eb303f8a56")
                         });
                 });
 
@@ -221,13 +220,13 @@ namespace TattooServer.Migrations
 
                     b.Property<string>("Summary")
                         .IsRequired()
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
 
                     b.HasKey("Id");
 
@@ -282,8 +281,8 @@ namespace TattooServer.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.HasKey("Id");
 
@@ -314,38 +313,6 @@ namespace TattooServer.Migrations
                             Pinned = false,
                             Title = "Sorteos"
                         });
-                });
-
-            modelBuilder.Entity("Entities.Models.Client", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ClientId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("Entities.Models.PreviousTattooData", b =>
@@ -379,26 +346,27 @@ namespace TattooServer.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<string>("ImageSource")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -448,8 +416,17 @@ namespace TattooServer.Migrations
 
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
-                    b.Property<string>("Email")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
@@ -461,35 +438,69 @@ namespace TattooServer.Migrations
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
-                    b.HasKey("Email");
+                    b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique();
 
                     b.ToTable("Users");
 
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
+
                     b.HasData(
                         new
                         {
+                            Id = new Guid("8da804eb-2f2c-4411-af61-bf0b4efa4e62"),
                             Email = "ekaEpitafio@gmail.com",
                             IsAdmin = true,
                             Password = "eka666"
                         },
                         new
                         {
+                            Id = new Guid("fb4fd82f-fbad-4b86-9492-d940e7084248"),
                             Email = "gastmartinez85@gmail.com",
                             IsAdmin = true,
                             Password = "gaston666"
                         },
                         new
                         {
+                            Id = new Guid("befb2d78-b315-42e5-ba02-c1183fd60756"),
                             Email = "brian@noemail.com",
                             IsAdmin = false,
                             Password = "elBrian"
                         },
                         new
                         {
-                            Email = "testuser@gmail.com",
+                            Id = new Guid("a5ee6fb2-bcf0-4214-ae92-3af7e610fa03"),
+                            Email = "sofia@noemail.com",
+                            IsAdmin = false,
+                            Password = "test111"
+                        },
+                        new
+                        {
+                            Id = new Guid("10aa1197-16f0-4bba-b5cd-637ebd6d3eff"),
+                            Email = "lucas@noemail.com",
+                            IsAdmin = false,
+                            Password = "test111"
+                        },
+                        new
+                        {
+                            Id = new Guid("76258c5c-f7fd-42ed-b5cb-bfa8de160963"),
+                            Email = "diego@noemail.com",
+                            IsAdmin = false,
+                            Password = "test111"
+                        },
+                        new
+                        {
+                            Id = new Guid("1497eb69-419f-40d4-bde3-a40a0fdb99b0"),
+                            Email = "juan@noemail.com",
+                            IsAdmin = false,
+                            Password = "test111"
+                        },
+                        new
+                        {
+                            Id = new Guid("22e1eaa2-bf97-4c83-8af6-84eb303f8a56"),
+                            Email = "nati@noemail.com",
                             IsAdmin = false,
                             Password = "test111"
                         });
@@ -581,11 +592,35 @@ namespace TattooServer.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Entities.Models.Client", b =>
+                {
+                    b.HasBaseType("Entities.Models.User");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasDiscriminator().HasValue("Client");
+                });
+
             modelBuilder.Entity("Entities.Models.AppointmentData", b =>
                 {
                     b.HasOne("Entities.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("Email");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Entities.Models.BlogItem", b =>

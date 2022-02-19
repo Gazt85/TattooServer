@@ -12,13 +12,13 @@ namespace Entities.Models
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "El título es obligatorio")]
-        [MaxLength(50, ErrorMessage = "El título no puede ser mayor a 50 caracteres.")]
+        [MaxLength(150, ErrorMessage = "El título no puede ser mayor a 150 caracteres.")]
         public string Title { get; set; }
 
         public DateTime Date { get; set; }
 
         [Required(ErrorMessage = "El resumen es obligatorio")]
-        [MaxLength(150, ErrorMessage = "El resumen no puede ser mayor a 150 caracteres.")]
+        [MaxLength(250, ErrorMessage = "El resumen no puede ser mayor a 250 caracteres.")]
         public string Summary { get; set; }
 
         [ForeignKey(nameof(BlogPost))]

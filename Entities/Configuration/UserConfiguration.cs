@@ -32,14 +32,16 @@ namespace Entities.Configuration
                      Id = new Guid("BEFB2D78-B315-42E5-BA02-C1183FD60756"),
                      IsAdmin = false,
                      Email = "brian@noemail.com",
-                     Password = "elBrian"
+                     Password = "elBrian",                     
                  },
                   new User
                   {
                       Id = new Guid("A5EE6FB2-BCF0-4214-AE92-3AF7E610FA03"),
                       IsAdmin = false,
                       Email = "sofia@noemail.com",
-                      Password = "test111"
+                      Password = "test111",
+                      
+                      
                   },
                    new User
                    {
@@ -68,7 +70,7 @@ namespace Entities.Configuration
                           IsAdmin = false,
                           Email = "nati@noemail.com",
                           Password = "test111"
-                      }
+                      }                       
                 );
         }
     }
