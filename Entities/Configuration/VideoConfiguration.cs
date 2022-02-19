@@ -26,7 +26,7 @@ namespace Entities.Configuration
             {
                 Id= new Guid("B809488C-0037-4ADC-9D2F-89DCAA65758B"),
                 Title = "Nerium",
-                Description = "This is a wider card with supporting text below as a natural lead-in to additional content.This is a wider card with supporting text below as a natural lead-in to additional content",
+                Description = "This is a wider card with supporting text below as a natural lead-in to additional content",
                 Date = new DateTime(2020, 12, 12),
                 ImageSource = @"img\Eka logo.jpeg",
                 Link = "https://www.youtube.com/watch?v=BL2NHqc74sQ&ab_channel=NERIUMOFFICIALNERIUMOFFICIAL"
