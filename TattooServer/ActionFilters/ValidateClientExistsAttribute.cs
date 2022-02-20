@@ -22,7 +22,9 @@ namespace TattooServer.ActionFilters
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var trackChanges = context.HttpContext.Request.Method.Equals("PUT");
+            var method = context.HttpContext.Request.Method;
+            var trackChanges = (method.Equals("PUT") || method.Equals("PATCH")) ? true : false;
+
             var id = (Guid)context.ActionArguments["id"];
             var client = await _repository.Client.GetClientAsync(id, trackChanges);
 

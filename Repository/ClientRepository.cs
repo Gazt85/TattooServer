@@ -19,12 +19,12 @@ namespace Repository
         }
 
         public async Task<IEnumerable<Client>> GetAllClientsAsync(bool trackChanges) =>
-        await FindAll(trackChanges)
+        await FindByCondition(c => !c.IsAdmin,trackChanges)
         .OrderBy(c => c.Email)
         .ToListAsync();
 
         public async Task<Client> GetClientAsync(Guid ClientId, bool trackChanges) =>
-           await FindByCondition(c => c.Email.Equals(ClientId), trackChanges)
+           await FindByCondition(c => c.Id.Equals(ClientId), trackChanges)
            .SingleOrDefaultAsync();
 
         public void CreateClient(Client Client) => Create(Client);
