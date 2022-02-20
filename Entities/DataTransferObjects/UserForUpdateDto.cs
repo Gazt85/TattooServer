@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Entities.DataTransferObjects
 {
-    public class UserForCreationDto
-    {        
+    public class UserForUpdateDto
+    {
         [Required(ErrorMessage = "Debe ingresar un email")]
         [MaxLength(200, ErrorMessage = "El email no puede ser mayor a 200 caracteres.")]
         public string Email { get; set; }
