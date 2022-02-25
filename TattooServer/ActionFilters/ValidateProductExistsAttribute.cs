@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace TattooServer.ActionFilters
 {
-    public class ValidateClientExistsAttribute : IAsyncActionFilter
+    public class ValidateProductExistsAttribute : IAsyncActionFilter
     {
-
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
 
-        public ValidateClientExistsAttribute(IRepositoryManager repository, ILoggerManager logger)
+        public ValidateProductExistsAttribute(IRepositoryManager repository, ILoggerManager logger)
         {
             _repository = repository;
             _logger = logger;
@@ -24,16 +23,16 @@ namespace TattooServer.ActionFilters
             var trackChanges = (method.Equals("PUT") || method.Equals("PATCH")) ? true : false;
 
             var id = (Guid)context.ActionArguments["id"];
-            var client = await _repository.Client.GetClientAsync(id, trackChanges);
+            var product = await _repository.Product.GetProductAsync(id, trackChanges);
 
-            if (client == null)
+            if (product == null)
             {
-                _logger.LogInfo($"Client with id {id} doesn't exists in the database");
+                _logger.LogInfo($"Product with id {id} doesn't exists in the database");
                 context.Result = new NotFoundResult();
             }
             else
             {
-                context.HttpContext.Items.Add("Client", client);
+                context.HttpContext.Items.Add("Product", product);
                 await next();
             }
         }

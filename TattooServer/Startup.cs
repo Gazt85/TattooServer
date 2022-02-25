@@ -40,6 +40,7 @@ namespace TattooServer
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ValidationFilterAttribute>();
             services.AddScoped<ValidateClientExistsAttribute>();
+            services.AddScoped<ValidateProductExistsAttribute>();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
