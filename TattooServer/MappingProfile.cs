@@ -25,6 +25,10 @@ namespace TattooServer
             CreateMap<Product, ProductDto>();
             CreateMap<ProductForCreationDto, Product>();
             CreateMap<ProductForUpdateDto, Product>().ReverseMap();
+
+            CreateMap<Video, VideoDto>();
+            CreateMap<VideoForCreationDto, Video>();
+            CreateMap<VideoForUpdateDto, Video>().ReverseMap();
         }
     }
 }

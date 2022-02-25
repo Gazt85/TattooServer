@@ -38,9 +38,11 @@ namespace TattooServer
             services.ConfigureSqlContext(Configuration);
             services.ConfigureRepositoryManager();
             services.AddAutoMapper(typeof(Startup));
+
             services.AddScoped<ValidationFilterAttribute>();
             services.AddScoped<ValidateClientExistsAttribute>();
             services.AddScoped<ValidateProductExistsAttribute>();
+            services.AddScoped<ValidateVideoExistsAttribute>();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
