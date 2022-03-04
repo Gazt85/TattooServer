@@ -43,6 +43,8 @@ namespace TattooServer
             services.AddScoped<ValidateClientExistsAttribute>();
             services.AddScoped<ValidateProductExistsAttribute>();
             services.AddScoped<ValidateVideoExistsAttribute>();
+            services.AddScoped<ValidateBlogPostExistsAttribute>();
+            services.AddScoped<ValidateBlogItemExistsAttribute>();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {

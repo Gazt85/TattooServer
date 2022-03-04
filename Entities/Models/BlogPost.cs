@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entities.Models
 {
     /// <summary>
-    /// Represents the full blogpost/article.
+    /// Represents the content of the blogpost/article.
     /// </summary>
     public class BlogPost
     {
@@ -16,7 +16,7 @@ namespace Entities.Models
 
         [Required(ErrorMessage = "El título es obligatorio")]
         [MaxLength(250, ErrorMessage = "El título no puede ser mayor a 250 caracteres.")]
-        public string Title { get; set; }
+        public string Title { get; set; }   
 
         [Required(ErrorMessage = "La fecha es obligatoria")]
         public DateTime Date { get; set; }
