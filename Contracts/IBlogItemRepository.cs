@@ -8,7 +8,10 @@ namespace Contracts
 {
     public interface IBlogItemRepository
     {
-        Task<BlogItem> GetBlogItemByBlogPostIdAsync(Guid BlogId, bool trackChanges);
+        Task<IEnumerable<BlogItem>> GetAllBlogItemAsync(bool trackChanges);
+        Task<BlogItem> GetBlogItemAsync(Guid id, bool trackChanges);           
         void CreateBlogItem(BlogItem blogItem);
+
+        void DeleteBlogItem(BlogItem blogitem);
     }
 }

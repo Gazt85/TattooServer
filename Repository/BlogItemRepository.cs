@@ -17,10 +17,17 @@ namespace Repository
 
         }
 
-        public void CreateBlogItem(BlogItem blogItem) => Create(blogItem);
+        public async Task<IEnumerable<BlogItem>> GetAllBlogItemAsync(bool trackChanges) =>
+           await FindAll(trackChanges)      
+           .ToListAsync();
 
-        public async Task<BlogItem> GetBlogItemByBlogPostIdAsync(Guid BlogId, bool trackChanges) =>
-            await FindByCondition(b => b.BlogPostId.Equals(BlogId), trackChanges)
-            .SingleOrDefaultAsync();
+        public async Task<BlogItem> GetBlogItemAsync(Guid blogItemId, bool trackChanges) =>
+        await FindByCondition(c => c.Id.Equals(blogItemId), trackChanges)
+        .SingleOrDefaultAsync();
+
+        public void CreateBlogItem(BlogItem blogItem) => Create(blogItem);      
+
+        public void DeleteBlogItem(BlogItem blogItem) => Delete(blogItem);
+     
     }
 }

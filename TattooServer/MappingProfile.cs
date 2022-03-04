@@ -29,6 +29,14 @@ namespace TattooServer
             CreateMap<Video, VideoDto>();
             CreateMap<VideoForCreationDto, Video>();
             CreateMap<VideoForUpdateDto, Video>().ReverseMap();
+
+            CreateMap<BlogPost, BlogPostDto>();
+            CreateMap<BlogPostForCreationDto, BlogPost>();
+            CreateMap<BlogPostForUpdateDto, BlogPost>().ReverseMap();
+
+            CreateMap<BlogItem, BlogItemDto>();
+            CreateMap<BlogItemForCreationDto, BlogItem>();
+            CreateMap<BlogItemForUpdateDto, BlogItem>().ReverseMap();
         }
     }
 }

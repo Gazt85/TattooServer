@@ -1,10 +1,11 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Entities.DataTransferObjects
 {
-    public class BlogPostForUpdateDto : BlogPostForManipulationDto
-    {       
+    public class BlogItemForUpdateDto : BlogItemForManipulationDto
+    {
         public DateTime UpdateDate { get; set; } = DateTime.Now;
     }
 }
