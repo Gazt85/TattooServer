@@ -23,6 +23,11 @@ namespace Repository
         .OrderBy(c => c.Email)
         .ToListAsync();
 
+        public async Task<IEnumerable<User>> GetAllClientsAsync(bool trackChanges) =>
+     await FindByCondition(c => !c.IsAdmin, trackChanges)
+     .OrderBy(c => c.Email)
+     .ToListAsync();
+
         public async Task<User> GetUserAsync(Guid userId, bool trackChanges) =>
            await FindByCondition(c => c.Id.Equals(userId), trackChanges)
            .SingleOrDefaultAsync();
@@ -32,6 +37,6 @@ namespace Repository
         public void DeleteUser(User user)
         {
             Delete(user);
-        }      
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Entities.DataTransferObjects
 {
     public class AppointmentDataDto
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Used for map to the customer's name
@@ -41,12 +41,12 @@ namespace Entities.DataTransferObjects
         /// <summary>
         /// Initial Time
         /// </summary>
-        public DateTime StartTime { get; set; }
+        public DateTime StartDateTime { get; set; }
 
         /// <summary>
         /// Final Time
         /// </summary>
-        public DateTime EndTime { get; set; }
+        public DateTime EndDatetime { get; set; }
 
         /// <summary>
         /// Specifies if it will take all day.
@@ -74,11 +74,11 @@ namespace Entities.DataTransferObjects
         /// <summary>
         /// Tattoo width
         /// </summary>
-        public string Width { get; set; }
+        public string TattooWidth { get; set; }
 
         /// <summary>
         /// Tattoo height
         /// </summary>
-        public string Height { get; set; }
+        public string TattooHeight { get; set; }
     }
 }

@@ -2,8 +2,7 @@
 
 namespace Entities.DataTransferObjects
 {
-    public class ClientForUpdateDto : ClientForManipulationDto
-    {
-        
+    public class UserForUpdateDto : UserForManipulationDto
+    {      
     }
 }

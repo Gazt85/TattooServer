@@ -1,0 +1,9 @@
+2022-03-01 00:27:04.8179 INFO Video with id: cca45a43-e80d-46c8-9e34-a4daeffd460f doesn't exists in the database.
+2022-03-01 00:32:11.2780 ERROR Invalid model state  for the object. Controller: BlogPosts, action: CreateBlogPost.
+2022-03-01 00:33:32.6883 ERROR Invalid model state  for the object. Controller: BlogPosts, action: CreateBlogPost.
+2022-03-01 00:36:02.7707 ERROR Invalid model state  for the object. Controller: BlogPosts, action: CreateBlogPost.
+2022-03-01 00:36:10.3971 ERROR Invalid model state  for the object. Controller: BlogPosts, action: CreateBlogPost.
+2022-03-01 00:39:27.5349 ERROR Invalid model state  for the object. Controller: BlogPosts, action: CreateBlogPost.
+2022-03-01 23:16:23.3053 ERROR Invalid model state for the patch document.
+2022-03-01 23:17:13.7743 ERROR Invalid model state for the patch document.
+2022-03-01 23:23:10.8890 INFO Video with id 0dcfc9da-75a4-4406-72d4-08d9f80ba55a doesn't exists in the database

@@ -25,7 +25,7 @@ namespace Entities.Configuration
                      Id = new Guid("FB4FD82F-FBAD-4B86-9492-D940E7084248"),
                      IsAdmin = true,
                      Email = "gastmartinez85@gmail.com",
-                     Password = "gaston666"
+                     Password = "gaston666",                                          
                  },
                  new User
                  {
