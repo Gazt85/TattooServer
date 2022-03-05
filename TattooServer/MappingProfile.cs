@@ -37,6 +37,22 @@ namespace TattooServer
             CreateMap<BlogItem, BlogItemDto>();
             CreateMap<BlogItemForCreationDto, BlogItem>();
             CreateMap<BlogItemForUpdateDto, BlogItem>().ReverseMap();
+
+            CreateMap<AppointmentData, AppointmentDataDto>().
+                ForMember(a => a.Subject, opt =>
+                opt.MapFrom(x => string.Join(" ", x.FirstName, x.LastName))).
+                ForMember(a => a.Location, opt =>
+                opt.MapFrom(x => x.Phone)).
+                ForMember(a => a.ShortDescription, opt =>
+                opt.MapFrom(x => x.TattooDescription)).
+                ForMember(a => a.Description, opt =>
+                opt.MapFrom(x => $"{x.TattooDescription} - Dimensiones: {x.TattooWidth} X {x.TattooHeight}")).
+                ForMember(a => a.PhotoSource, opt =>
+                opt.MapFrom(x => x.Photo));
+
+
+            CreateMap<AppointmentDataForCreationDto, AppointmentData>();
+            CreateMap<AppointmentDataForUpdateDto, AppointmentData>().ReverseMap();
         }
     }
 }
