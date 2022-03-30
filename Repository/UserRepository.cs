@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,15 +19,27 @@ namespace Repository
 
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync(bool trackChanges) =>
-        await FindAll(trackChanges)
+        public async Task<PagedList<User>> GetAllUsersAsync(UserParameters userParameters, bool trackChanges)
+        {
+            var users = await FindAll(trackChanges)
+       .OrderBy(c => c.Email)
+       .ToListAsync();
+
+            return PagedList<User>
+               .ToPagedList(users, userParameters.PageNumber, userParameters.PageSize);
+        }
+
+
+        public async Task<PagedList<User>> GetAllClientsAsync(UserParameters userParameters, bool trackChanges)
+        {
+            var users = await FindByCondition(c => !c.IsAdmin, trackChanges)
         .OrderBy(c => c.Email)
         .ToListAsync();
 
-        public async Task<IEnumerable<User>> GetAllClientsAsync(bool trackChanges) =>
-     await FindByCondition(c => !c.IsAdmin, trackChanges)
-     .OrderBy(c => c.Email)
-     .ToListAsync();
+            return PagedList<User>
+              .ToPagedList(users, userParameters.PageNumber, userParameters.PageSize);
+
+        }
 
         public async Task<User> GetUserAsync(Guid userId, bool trackChanges) =>
            await FindByCondition(c => c.Id.Equals(userId), trackChanges)

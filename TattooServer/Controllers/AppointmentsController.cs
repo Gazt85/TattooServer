@@ -2,9 +2,11 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +31,11 @@ namespace TattooServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAppointments()
+        public async Task<IActionResult> GetAppointments([FromQuery] AppointmentParameters appointmentParameters)
         {
-            var appointments = await _repository.Appointment.GetAllApointmentsAsync(trackChanges: false);
+            var appointments = await _repository.Appointment.GetAllApointmentsAsync(appointmentParameters, trackChanges: false);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(appointments.Metadata));
 
             var appointmentsDto = _mapper.Map<IEnumerable<AppointmentDataDto>>(appointments);
 
