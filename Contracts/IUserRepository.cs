@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Entities.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,9 @@ namespace Contracts
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllUsersAsync(bool trackChanges);
+        Task<PagedList<User>> GetAllUsersAsync(UserParameters userParameters,bool trackChanges);
 
-        Task<IEnumerable<User>> GetAllClientsAsync(bool trackChanges);
+        Task<PagedList<User>> GetAllClientsAsync(UserParameters userParameters,bool trackChanges);
         Task<User> GetUserAsync(Guid userId, bool trackChanges);
         void CreateUser(User user);
         void DeleteUser(User user);

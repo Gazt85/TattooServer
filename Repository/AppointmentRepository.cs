@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Entities.RequestFeatures;
 
 namespace Repository
 {
@@ -18,10 +19,15 @@ namespace Repository
 
         }
 
-        public async Task<IEnumerable<AppointmentData>> GetAllApointmentsAsync(bool trackChanges) =>
-           await FindAll(trackChanges)
+        public async Task<PagedList<AppointmentData>> GetAllApointmentsAsync(AppointmentParameters appointmentParameters, bool trackChanges)
+        {
+            var appointments = await FindAll(trackChanges)
            .OrderBy(a => a.StartDateTime)
            .ToListAsync();
+
+            return PagedList<AppointmentData>
+               .ToPagedList(appointments, appointmentParameters.PageNumber, appointmentParameters.PageSize);
+        }
 
         public async Task<AppointmentData> GetAppointmentAsync(Guid appointmentId, bool trackChanges) =>
             await FindByCondition(a => a.Id.Equals(appointmentId), trackChanges)

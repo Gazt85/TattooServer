@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Entities.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Contracts
 {
     public interface IAppointmentRepository
     {
-        Task<IEnumerable<AppointmentData>> GetAllApointmentsAsync(bool trackChanges);
+        Task<PagedList<AppointmentData>> GetAllApointmentsAsync(AppointmentParameters appointmentParameters,bool trackChanges);
         Task<AppointmentData> GetAppointmentAsync(Guid appointmentId, bool trackChanges);
         void CreateAppointment(AppointmentData appointment);
         void DeleteAppointment(AppointmentData appointment);

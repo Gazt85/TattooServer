@@ -5,11 +5,13 @@ using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Entities.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TattooServer.ActionFilters;
+using Newtonsoft.Json;
 
 namespace TattooServer.Controllers
 {
@@ -29,9 +31,11 @@ namespace TattooServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetVideos()
+        public async Task<IActionResult> GetVideos([FromQuery] VideoParameters videoParameters)
         {
-            var videos = await _repository.Video.GetAllVideosAsync(trackChanges: false);
+            var videos = await _repository.Video.GetAllVideosAsync(videoParameters, trackChanges: false);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(videos.Metadata));
 
             var videosDto = _mapper.Map<IEnumerable<VideoDto>>(videos);
 

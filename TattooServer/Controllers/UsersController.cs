@@ -2,7 +2,9 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +29,11 @@ namespace TattooServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers([FromQuery] UserParameters usersParameters)
         {           
-            var users = await _repository.User.GetAllUsersAsync(trackChanges: false);
+            var users = await _repository.User.GetAllUsersAsync(usersParameters, trackChanges: false);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(users.Metadata));
 
             var usersDto = _mapper.Map<IEnumerable<UserDto>>(users);
 

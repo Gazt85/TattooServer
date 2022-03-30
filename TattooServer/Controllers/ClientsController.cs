@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TattooServer.ActionFilters;
+using Entities.RequestFeatures;
+using Newtonsoft.Json;
 
 namespace TattooServer.Controllers
 {
@@ -29,9 +31,11 @@ namespace TattooServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetClients()
+        public async Task<IActionResult> GetClients([FromQuery] UserParameters userParameters)
         {
-            var clients = await _repository.User.GetAllClientsAsync(trackChanges: false);
+            var clients = await _repository.User.GetAllClientsAsync(userParameters, trackChanges: false);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(clients.Metadata));
 
             var clientsDto = _mapper.Map<IEnumerable<UserDto>>(clients);
 

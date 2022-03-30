@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,16 @@ namespace Repository
 
         }
 
-        public async Task<IEnumerable<Video>> GetAllVideosAsync(bool trackChanges) =>
-            await FindAll(trackChanges)
-            .OrderBy(v => v.Date)
-            .ToListAsync();
+        public async Task<PagedList<Video>> GetAllVideosAsync(VideoParameters videoParameters, bool trackChanges)
+        {
+            var videos = await FindAll(trackChanges)
+           .OrderBy(v => v.Date)
+           .ToListAsync();
+
+            return PagedList<Video>
+              .ToPagedList(videos, videoParameters.PageNumber, videoParameters.PageSize);
+        }
+           
 
         public async Task<Video> GetVideoAsync(Guid videoId, bool trackChanges) =>
             await FindByCondition(v => v.Id.Equals(videoId), trackChanges)

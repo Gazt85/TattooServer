@@ -59,4 +59,4 @@ namespace Entities.DataTransferObjects
         public int StatusId { get; set; } = 1;
     }
 }
-}
+

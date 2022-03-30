@@ -2,9 +2,11 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +31,11 @@ namespace TattooServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        public async Task<IActionResult> GetProducts([FromQuery] ProductParameters productsParameters)
         {
-            var products = await _repository.Product.GetAllProductsAsync(trackChanges: false);
+            var products = await _repository.Product.GetAllProductsAsync(productsParameters, trackChanges: false);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.Metadata));
 
             var productsDto = _mapper.Map<IEnumerable<ProductDto>>(products);
 
