@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Entities.RequestFeatures
 {
      public abstract class RequestParameters
@@ -39,6 +41,12 @@ namespace Entities.RequestFeatures
         {
             OrderBy = "name";
         }
+
+        public uint MinPrice { get; set; }
+        public uint MaxPrice { get; set; } = int.MaxValue;
+        public List<string> Category { get; set; } = new List<string>();
+
+        public bool ValidPriceRange => MaxPrice > MinPrice; 
     }
 
     public class AppointmentParameters : RequestParameters
