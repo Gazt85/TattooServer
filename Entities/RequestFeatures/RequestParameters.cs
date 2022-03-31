@@ -46,7 +46,9 @@ namespace Entities.RequestFeatures
         public uint MaxPrice { get; set; } = int.MaxValue;
         public List<string> Category { get; set; } = new List<string>();
 
-        public bool ValidPriceRange => MaxPrice > MinPrice; 
+        public bool ValidPriceRange => MaxPrice > MinPrice;
+
+        public string SearchTerm { get; set; }
     }
 
     public class AppointmentParameters : RequestParameters
