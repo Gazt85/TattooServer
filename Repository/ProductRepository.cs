@@ -21,7 +21,7 @@ namespace Repository
 
         public async Task<PagedList<Product>> GetAllProductsAsync(ProductParameters productParameters, bool trackChanges)
         {
-            var products = await FindAll(trackChanges)
+            var products = await FindByCondition(p => p.Price >= productParameters.MinPrice && p.Price <= productParameters.MaxPrice, trackChanges)
         .OrderBy(p => p.Price)
         .ToListAsync();
 

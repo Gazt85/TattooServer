@@ -33,6 +33,11 @@ namespace TattooServer.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProducts([FromQuery] ProductParameters productsParameters)
         {
+            if (!productsParameters.ValidPriceRange)
+            {
+                return BadRequest("El precio máximo no puede ser inferior al precio mínimo");
+            }
+
             var products = await _repository.Product.GetAllProductsAsync(productsParameters, trackChanges: false);
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.Metadata));
@@ -40,7 +45,7 @@ namespace TattooServer.Controllers
             var productsDto = _mapper.Map<IEnumerable<ProductDto>>(products);
 
             return Ok(productsDto);
-        }
+        }      
 
         [HttpGet("{id}", Name = "ProductById")]
         public async Task<IActionResult> GetProduct(Guid id)
