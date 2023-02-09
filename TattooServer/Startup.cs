@@ -1,4 +1,5 @@
 using Contracts;
+using Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog;
+using Repository.DataShaping;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +17,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TattooServer.ActionFilters;
 using TattooServer.Extensions;
+using TattooServer.Utility;
 
 namespace TattooServer
 {
@@ -46,6 +49,11 @@ namespace TattooServer
             services.AddScoped<ValidateBlogPostExistsAttribute>();
             services.AddScoped<ValidateBlogItemExistsAttribute>();
             services.AddScoped<ValidateAppointmentExistsAttribute>();
+            services.AddScoped<IDataShaper<ProductDto>, DataShaper<ProductDto>>();
+            services.AddScoped<ValidateMediaTypeAttribute>();
+            services.AddScoped<ProductLinks>();
+
+
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -58,6 +66,8 @@ namespace TattooServer
                 config.ReturnHttpNotAcceptable = true;
             }).AddNewtonsoftJson()
           .AddXmlDataContractSerializerFormatters();
+            services.AddCustomMediaTypes();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
